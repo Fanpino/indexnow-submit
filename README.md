@@ -19,6 +19,16 @@ python3 indexnow_submit.py --host example.com --key YOUR_KEY \
 python3 indexnow_submit.py --host example.com --key YOUR_KEY --file urls.txt
 ```
 
+Submit every URL in your sitemap in one go:
+
+```bash
+curl -s https://example.com/sitemap.xml \
+  | grep -o '<loc>[^<]*</loc>' | sed 's/<[^>]*>//g' > urls.txt
+python3 indexnow_submit.py --host example.com --key YOUR_KEY --file urls.txt
+```
+
+(For a sitemap index, run the same thing on each child sitemap.)
+
 Requires only the Python standard library — no `pip install` needed.
 
 ## Before you use it
@@ -42,3 +52,7 @@ Google.
 ## License
 
 MIT — see [LICENSE](LICENSE).
+
+---
+
+Built by [Fanpino](https://fanpino.com/en/), a Dubai-based software studio. We run it on every publish of our own site.
